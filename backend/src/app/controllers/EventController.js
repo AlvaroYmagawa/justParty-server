@@ -53,8 +53,6 @@ class EventController {
         canceled_at: null,
       },
       order: ['date'],
-      limit: 20,
-      offset: (page - 1) * 20,
       attributes: [
         'id',
         'name',
@@ -89,20 +87,23 @@ class EventController {
   }
 
   async update(req, res) {
-    // Is your event validation
+
     const event = await Event.findByPk(req.params.eventId, {
       include: [
         {
           model: User,
+          as: 'promoter',
           attributes: ['name', 'email'],
         },
       ],
     });
 
+    // Event Exists validation
     if (!event) {
       return res.status(401).json({ error: 'Event not found' });
     }
 
+    // Is your event validation
     if (event.promoter_id !== req.userId) {
       return res.status(401).json({
         error: "You don't have permission to chenge this event",
@@ -115,13 +116,14 @@ class EventController {
       description,
       date,
       sales_date,
+      banner_id
     } = await event.update(req.body);
 
-    return res.json({ name, localization, description, date, sales_date });
+    return res.json({ name, localization, description, date, sales_date, banner_id });
   }
 
   async delete(req, res) {
-    // Is your event validation
+
     const event = await Event.findByPk(req.params.eventId, {
       include: [
         {
@@ -131,10 +133,12 @@ class EventController {
       ],
     });
 
+    // Event Exists validation
     if (!event) {
       return res.status(401).json({ error: 'Event not found' });
     }
 
+    // Is your event validation
     if (event.promoter_id !== req.userId) {
       return res.status(401).json({
         error: "You don't have permission to cancel this event",

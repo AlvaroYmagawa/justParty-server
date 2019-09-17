@@ -28,23 +28,23 @@ Email validation: Não deve ser possivél cadastrar usuários com um mesmo e-mai
 Retorna todos os atributos do usurio criado.
 ```bash
 {
-  id: 
-  name: 
-  email: 
-  password:
-  promoter:
-  updatedA": 
-  createdA": 
-  password_hash: 
-  adress: 
-  contact: 
-  avatar_id: 
+  "id": 6,
+  "name": "leleogay",
+  "email": "leleogay3@gmail.com",
+  "password": "123456",
+  "promoter": true,
+  "updatedAt": "2019-09-16T17:05:29.909Z",
+  "createdAt": "2019-09-16T17:05:29.909Z",
+  "password_hash": "$2a$08$rRPggXnAC1DTs.sP1.0zeevfWmxrnUEEawBgi3U/YFjNEC2GfUSDK",
+  "adress": null,
+  "contact": null,
+  "avatar_id": null
 }
 ```
 
 ### UPDATE
 Serviço para atualizar informações de usuários padrão/ promoter. 
-* Serviço disponível apenas para usurios autenticados.
+* Serviço disponível apenas para usuários autenticados.
 
 ### Url
 PUT - http://localhost:3333/users
@@ -68,12 +68,11 @@ PUT - http://localhost:3333/users
 Token provided - Usuário deve estar logado para requisitar esse serviço.
 
 ### Saídas
-Retorna o id, nome e o email do usurio que recebeu a alteração.
 ```bash
 {
-  id:
-  name: 
-  email: 
+  "id": 3,
+  "name": "test",
+  "email": "test@gmail.com"
 }
 ```
 

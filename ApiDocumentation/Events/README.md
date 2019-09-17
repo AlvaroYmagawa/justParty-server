@@ -64,6 +64,7 @@ GET - http://localhost:3333/events
 
 ### Saídas
 Retorna um array com todos os eventos não cancelados.
+```bash
 [
   {
     "past": true,
@@ -91,6 +92,7 @@ Retorna um array com todos os eventos não cancelados.
     }
   },
 ]
+```
 
 
 ## UPDATE
@@ -120,6 +122,7 @@ Is your event validation: Verifica se o evento que o promoter quer alterar é de
 Event Exists validation: Verifica se o id do evento existe.
 
 ### Saídas
+```bash
 {
   "name": "Rolezao na Pilar",
   "localization": "rua alagoas, 630",
@@ -128,6 +131,7 @@ Event Exists validation: Verifica se o id do evento existe.
   "sales_date": "2019-09-17T21:00:00.000Z"
   "banner_id": 1
 }
+```
 
 
 ## DELETE
@@ -147,6 +151,7 @@ Is your event validation: Verifica se o evento que o promoter quer cancelar é d
 Event Exists validation: Verifica se o id do evento existe.
 
 ### Saídas
+```bash
 {
   "id": 1,
   "name": "RolenaPilaar",
@@ -164,7 +169,7 @@ Event Exists validation: Verifica se o id do evento existe.
     "email": "alvaroymagawa@gmail.com"
   }
 }
-
+```
 
 
 

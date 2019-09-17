@@ -1,5 +1,8 @@
 import Event from '../models/Event';
 import Wishlist from '../models/WishList';
+import File from '../models/File';
+import User from '../models/User';
+import { Op } from 'sequelize'
 
 class WishlistController {
   async store(req, res) {
@@ -34,9 +37,30 @@ class WishlistController {
   }
 
   async index(req, res) {
-    const wishlists = await Wishlist.findAll({ where: { canceled_at: null } })
+    const wishlists = await Wishlist.findAll({
+      where: { canceled_at: null },
+      include: [{
+        model: Event,
+        attributes: ['id', 'name', 'date', 'sales_date'],
+        include: [{
+          model: File,
+          as: 'banner',
+          attributes: ['id', 'path', 'url'],
+        }]
+      }],
+    })
 
-    return res.json();
+    return res.json(wishlists);
+  }
+
+  async delete(req, res) {
+    const wishlist = await Wishlist.findByPk(req.params.wishlistId);
+
+    wishlist.canceled_at = new Date();
+
+    await wishlist.save();
+
+    return res.json(wishlist);
   }
 }
 

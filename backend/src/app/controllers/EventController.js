@@ -1,8 +1,8 @@
 /* eslint-disable class-methods-use-this */
 import { isBefore, parseISO } from 'date-fns';
-import * as Yup from 'yup';
 import Event from '../models/Event';
 import User from '../models/User';
+import File from '../models/File'
 
 class EventController {
   async store(req, res) {
@@ -50,8 +50,40 @@ class EventController {
   async index(req, res) {
     const events = await Event.findAll({
       where: {
-        cancelled_at: null,
+        canceled_at: null,
       },
+      order: ['date'],
+      limit: 20,
+      offset: (page - 1) * 20,
+      attributes: [
+        'id',
+        'name',
+        'description',
+        'localization',
+        'date',
+        'sales_date',
+        'past',
+        'cancelable',
+        'canceled_at',
+      ],
+      include: [
+        {
+          model: User,
+          as: 'promoter',
+          attributes: ['id', 'name'],
+          include: [
+            {
+              model: File,
+              attributes: ['id', 'path', 'url'],
+            }
+          ],
+        },
+        {
+          model: File,
+          as: 'banner',
+          attributes: ['id', 'path', 'url'],
+        }
+      ],
     });
     return res.json(events);
   }

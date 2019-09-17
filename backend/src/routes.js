@@ -9,6 +9,7 @@ import SesstionController from './app/controllers/SessionController';
 import FileController from './app/controllers/FileController';
 import EventController from './app/controllers/EventController';
 import WishController from './app/controllers/WishListController';
+import WishListController from './app/controllers/WishListController';
 
 const routes = Router();
 const upload = multer(multerConfig);
@@ -33,5 +34,7 @@ routes.delete('/events/:eventId', EventController.delete);
 
 //Wishlist
 routes.post('/wishlists', WishController.store);
+routes.get('/wishlists', WishListController.index);
+routes.delete('/wishlists/:wishlistId', WishListController.delete);
 
 export default routes;

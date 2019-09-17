@@ -1,12 +1,13 @@
-# API Documentation 
-Descrição dos serviços providos pela API Restful para o frontend do JustParty.
+# Users
+Aqui temos todos os serviços relacionados ao usuário (CRUD).
 
-## Users
-
-### POST
+## CREATE
 Serviço para criação de usuários padrão/ promoter.
 
-#### Requisição.
+### Url
+POST http://localhost:3333/users
+
+### Corpo da requisição (Entradas).
 * Corpo da requisição JSON
 ```bash
 {
@@ -20,8 +21,11 @@ Serviço para criação de usuários padrão/ promoter.
 }
 ```
 
-#### Validações 
+### Validações 
 Email validation: Não deve ser possivél cadastrar usuários com um mesmo e-mail.
+
+
+
 
 
 ### PUT

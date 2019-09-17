@@ -4,8 +4,9 @@ import dataBaseConfig from '../config/database';
 import User from '../app/models/User';
 import File from '../app/models/File';
 import Event from '../app/models/Event';
+import WishList from '../app/models/WishList';
 
-const models = [User, File, Event];
+const models = [User, File, Event, WishList];
 
 class Database {
   constructor() {

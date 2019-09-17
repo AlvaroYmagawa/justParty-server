@@ -11,13 +11,13 @@ POST - http://localhost:3333/users
 * JSON
 ```bash
 {
-  name - string obrigatória.
-  email - string obrigatória e unicá
-  password - string obrigatória, mímino de 6 caracteres.
-  confirmPassword - string obrigatória, mímino de 6 caracteres, deve ser identico ao "password".
-  promoter - boolean obrigatório.
-  contact - string não obrigatória.
-  adress - string não obrigatória.
+  name: string *obrigatória.
+  email: string *obrigatória e unicá
+  password: string *obrigatória, mímino de 6 caracteres.
+  confirmPassword: string *obrigatória, mímino de 6 caracteres, deve ser identico ao "password".
+  promoter: boolean *obrigatório.
+  contact: string não obrigatória.
+  adress: string não obrigatória.
 }
 ```
 
@@ -54,13 +54,13 @@ PUT - http://localhost:3333/users
 * Bearer Token deve ser informado.
 ```bash
 {	
-  name - string não obrigatória.
-  email - string não obrigatória.
-  oldPassword - string não obrigatória.
-  password - string obrigatória caso oldPassword exista, mímino de 6 caracteres.
-  confirmPassword - string obrigatória, mímino de 6 caracteres, deve ser identico ao "password".
-  contact - string não obrigatória.
-  adress - string não obrigatória.
+  name: string não obrigatória.
+  email: string não obrigatória.
+  oldPassword: string não obrigatória.
+  password: string obrigatória caso oldPassword exista, mímino de 6 caracteres.
+  confirmPassword: string obrigatória, mímino de 6 caracteres, deve ser identico ao "password".
+  contact: string não obrigatória.
+  adress: string não obrigatória.
 }
 ```
 

@@ -29,8 +29,8 @@ Retorna todos os atributos do usurio criado.
 ```bash
 {
   "id": 6,
-  "name": "leleogay",
-  "email": "leleogay3@gmail.com",
+  "name": "leandro",
+  "email": "leandro@gmail.com",
   "password": "123456",
   "promoter": true,
   "updatedAt": "2019-09-16T17:05:29.909Z",

@@ -1,6 +1,7 @@
 /* eslint-disable class-methods-use-this */
 import * as Yup from 'yup';
 import User from '../models/User';
+import File from '../models/File';
 
 class UserController {
   async store(req, res) {
@@ -35,6 +36,19 @@ class UserController {
 
     const user = await User.create(req.body);
     return res.json(user);
+  }
+
+  async index(req, res) {
+    const users = await User.findByPk(req.params.userId, {
+      include: [
+        {
+          model: File,
+          attributes: ['url', 'name', 'path'],
+        },
+      ],
+    });
+
+    return res.json(users);
   }
 
   async update(req, res) {

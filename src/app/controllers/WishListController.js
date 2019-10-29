@@ -1,8 +1,9 @@
+/* eslint-disable class-methods-use-this */
+import { Op } from 'sequelize';
 import Event from '../models/Event';
 import Wishlist from '../models/WishList';
 import File from '../models/File';
 import User from '../models/User';
-import { Op } from 'sequelize'
 
 class WishlistController {
   async store(req, res) {
@@ -19,18 +20,20 @@ class WishlistController {
     const eventInList = await Wishlist.findOne({
       where: {
         event_id,
-        user_id: req.userId
-      }
+        user_id: req.userId,
+      },
     });
 
     if (eventInList) {
-      return res.status(400).json({ error: 'This event is already in your wishlist' })
+      return res
+        .status(400)
+        .json({ error: 'This event is already in your wishlist' });
     }
 
     const wishlist = await Wishlist.create({
       event_id,
       user_id: req.userId,
-      date
+      date,
     });
 
     return res.json(wishlist);
@@ -38,17 +41,21 @@ class WishlistController {
 
   async index(req, res) {
     const wishlists = await Wishlist.findAll({
-      where: { canceled_at: null },
-      include: [{
-        model: Event,
-        attributes: ['id', 'name', 'date', 'sales_date'],
-        include: [{
-          model: File,
-          as: 'banner',
-          attributes: ['id', 'path', 'url'],
-        }]
-      }],
-    })
+      where: { canceled_at: null, user_id: req.userId },
+      include: [
+        {
+          model: Event,
+          attributes: ['id', 'name', 'date', 'sales_date'],
+          include: [
+            {
+              model: File,
+              as: 'banner',
+              attributes: ['id', 'path', 'url'],
+            },
+          ],
+        },
+      ],
+    });
 
     return res.json(wishlists);
   }

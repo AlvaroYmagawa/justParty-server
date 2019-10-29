@@ -2,7 +2,7 @@
 import { isBefore, parseISO } from 'date-fns';
 import Event from '../models/Event';
 import User from '../models/User';
-import File from '../models/File'
+import File from '../models/File';
 
 class EventController {
   async store(req, res) {
@@ -47,6 +47,31 @@ class EventController {
     return res.json(event);
   }
 
+  async show(req, res) {
+    const event = await Event.findByPk(req.params.eventId, {
+      include: [
+        {
+          model: User,
+          as: 'promoter',
+          attributes: ['id', 'name'],
+          include: [
+            {
+              model: File,
+              attributes: ['id', 'path', 'url'],
+            },
+          ],
+        },
+        {
+          model: File,
+          as: 'banner',
+          attributes: ['id', 'path', 'url'],
+        },
+      ],
+    })
+
+    return res.json(event);
+  }
+
   async index(req, res) {
     const events = await Event.findAll({
       where: {
@@ -73,21 +98,20 @@ class EventController {
             {
               model: File,
               attributes: ['id', 'path', 'url'],
-            }
+            },
           ],
         },
         {
           model: File,
           as: 'banner',
           attributes: ['id', 'path', 'url'],
-        }
+        },
       ],
     });
     return res.json(events);
   }
 
   async update(req, res) {
-
     const event = await Event.findByPk(req.params.eventId, {
       include: [
         {
@@ -116,14 +140,20 @@ class EventController {
       description,
       date,
       sales_date,
-      banner_id
+      banner_id,
     } = await event.update(req.body);
 
-    return res.json({ name, localization, description, date, sales_date, banner_id });
+    return res.json({
+      name,
+      localization,
+      description,
+      date,
+      sales_date,
+      banner_id,
+    });
   }
 
   async delete(req, res) {
-
     const event = await Event.findByPk(req.params.eventId, {
       include: [
         {

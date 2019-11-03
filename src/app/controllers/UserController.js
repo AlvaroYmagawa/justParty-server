@@ -39,7 +39,7 @@ class UserController {
   }
 
   async index(req, res) {
-    const users = await User.findByPk(req.params.userId, {
+    const user = await User.findByPk(req.params.userId, {
       include: [
         {
           model: File,
@@ -48,7 +48,18 @@ class UserController {
       ],
     });
 
-    return res.json(users);
+    const { name, email, adress, contact, File: file, description, likes, dislikes } = user;
+
+    return res.json({
+      name,
+      email,
+      adress,
+      contact,
+      file,
+      description,
+      likes,
+      dislikes,
+    });
   }
 
   async update(req, res) {
@@ -88,12 +99,25 @@ class UserController {
       return res.status(401).json({ error: 'Password does not match' });
     }
 
-    const { id, name, email } = await user.update(req.body);
+    await user.update(req.body);
+
+    const { id, name, email, promoter, adress, contact, File: file } = await User.findByPk(req.userId, {
+      include: [
+        {
+          model: File,
+          attributes: ['id', 'path', 'url'],
+        },
+      ],
+    });
 
     return res.json({
       id,
       name,
       email,
+      file,
+      adress,
+      contact,
+      promoter,
     });
   }
 }

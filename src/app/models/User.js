@@ -13,6 +13,9 @@ class User extends Model {
         promoter: Sequelize.BOOLEAN,
         adress: Sequelize.STRING,
         contact: Sequelize.STRING,
+        description: Sequelize.STRING,
+        likes: Sequelize.INTEGER,
+        dislikes: Sequelize.INTEGER,
       },
       {
         sequelize,

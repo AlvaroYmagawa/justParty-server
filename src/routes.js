@@ -10,6 +10,7 @@ import SesstionController from './app/controllers/SessionController';
 import FileController from './app/controllers/FileController';
 import EventController from './app/controllers/EventController';
 import WishListController from './app/controllers/WishListController';
+import EvaluationController from './app/controllers/EvaluationController';
 
 const routes = Router();
 const cors = Cors();
@@ -52,5 +53,8 @@ routes.delete('/events/:eventId', EventController.delete);
 routes.post('/wishlists', WishListController.store);
 routes.get('/wishlists', WishListController.index);
 routes.delete('/wishlists/:wishlistId', WishListController.delete);
+
+// Evaluation
+routes.post('/evaluations/:promoterId', EvaluationController.store);
 
 export default routes;

@@ -56,5 +56,8 @@ routes.delete('/wishlists/:wishlistId', WishListController.delete);
 
 // Evaluation
 routes.post('/evaluations/:promoterId', EvaluationController.store);
+routes.get('/evaluations/:promoterId', EvaluationController.index);
+routes.put('/evaluations/:promoterId', EvaluationController.update);
+routes.delete('/evaluations/:evaluationId', EvaluationController.delete);
 
 export default routes;

@@ -1,7 +1,7 @@
 /* eslint-disable class-methods-use-this */
-import * as Yup from 'yup';
-import User from '../models/User';
-import File from '../models/File';
+const Yup  = require('yup');
+const User  = require('../models/User');
+const File  = require('../models/File');
 
 class UserController {
   async store(req, res) {
@@ -122,4 +122,4 @@ class UserController {
   }
 }
 
-export default new UserController();
+module.exports = new UserController();

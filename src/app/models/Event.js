@@ -1,8 +1,8 @@
 /* eslint-disable no-param-reassign */
-import Sequelize, { Model } from 'sequelize';
-import { isBefore, subHours } from 'date-fns';
+const Sequelize =  require('sequelize');
+const { isBefore, subHours } = require('date-fns');
 
-class Event extends Model {
+class Event extends Sequelize.Model {
   static init(sequelize) {
     super.init(
       {
@@ -38,4 +38,4 @@ class Event extends Model {
   }
 }
 
-export default Event;
+module.exports = Event;

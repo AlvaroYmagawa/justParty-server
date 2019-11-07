@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign */
-import Sequelize, { Model } from 'sequelize';
+const Sequelize =  require('sequelize');
 
-class Wishlist extends Model {
+class Wishlist extends Sequelize.Model {
   static init(sequelize) {
     super.init(
       {
@@ -21,4 +21,4 @@ class Wishlist extends Model {
   }
 }
 
-export default Wishlist;
+module.exports = Wishlist;

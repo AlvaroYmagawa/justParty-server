@@ -1,8 +1,8 @@
 /* eslint-disable class-methods-use-this */
-import { isBefore, parseISO } from 'date-fns';
-import Event from '../models/Event';
-import User from '../models/User';
-import File from '../models/File';
+const { isBefore, parseISO } =  require('date-fns');
+const Event = require('../models/Event');
+const User  = require('../models/User');
+const File  = require('../models/File');
 
 class EventController {
   async store(req, res) {
@@ -189,4 +189,4 @@ class EventController {
   }
 }
 
-export default new EventController();
+module.exports = new EventController();

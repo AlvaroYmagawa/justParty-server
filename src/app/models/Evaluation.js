@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign */
-import Sequelize, { Model } from 'sequelize';
+const Sequelize = require('sequelize');
 
-class Evaluation extends Model {
+class Evaluation extends Sequelize.Model {
   static init(sequelize) {
     super.init(
       {
@@ -21,4 +21,4 @@ class Evaluation extends Model {
   }
 }
 
-export default Evaluation;
+module.exports = Evaluation;

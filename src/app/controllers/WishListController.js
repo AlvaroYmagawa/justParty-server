@@ -1,9 +1,9 @@
 /* eslint-disable class-methods-use-this */
-import { Op } from 'sequelize';
-import Event from '../models/Event';
-import Wishlist from '../models/WishList';
-import File from '../models/File';
-import User from '../models/User';
+const { Op } =  require('sequelize');
+const Event =  require('../models/Event');
+const Wishlist = require('../models/WishList');
+const File = require('../models/File');
+const User = require('../models/User');
 
 class WishlistController {
   async store(req, res) {
@@ -71,4 +71,4 @@ class WishlistController {
   }
 }
 
-export default new WishlistController();
+module.exports = new WishlistController();

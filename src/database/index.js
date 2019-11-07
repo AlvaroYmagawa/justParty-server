@@ -1,11 +1,11 @@
-import Sequelize from 'sequelize';
-import dataBaseConfig from '../config/database';
+const Sequelize =  require('sequelize');
+const dataBaseConfig = require('../config/database');
 
-import User from '../app/models/User';
-import File from '../app/models/File';
-import Event from '../app/models/Event';
-import WishList from '../app/models/WishList';
-import Evaluations from '../app/models/Evaluation';
+const User = require('../app/models/User');
+const File = require('../app/models/File');
+const Event =  require('../app/models/Event');
+const WishList =  require('../app/models/WishList');
+const Evaluations = require('../app/models/Evaluation');
 
 const models = [User, File, Event, WishList, Evaluations];
 
@@ -23,4 +23,4 @@ class Database {
   }
 }
 
-export default new Database();
+module.exports =  new Database();

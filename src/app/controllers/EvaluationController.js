@@ -1,6 +1,6 @@
-import Evaluation from '../models/Evaluation';
-import User from '../models/User';
-import File from '../models/File';
+const Evaluation = require('../models/Evaluation');
+const User =  require('../models/User');
+const File = require('../models/File');
 
 class EvaluationController {
   async store(req, res) {
@@ -147,4 +147,4 @@ class EvaluationController {
   }
 }
 
-export default new EvaluationController();
+module.exports = new EvaluationController();

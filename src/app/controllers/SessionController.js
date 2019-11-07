@@ -1,8 +1,8 @@
 /* eslint-disable class-methods-use-this */
-import jwt from 'jsonwebtoken';
-import authConfig from '../../config/auth';
-import User from '../models/User';
-import File from '../models/File';
+const jwt = require('jsonwebtoken');
+const authConfig = require('../../config/auth');
+const User = require('../models/User');
+const File = require('../models/File');
 
 class SessionController {
   async store(req, res) {
@@ -43,4 +43,4 @@ class SessionController {
   }
 }
 
-export default new SessionController();
+module.exports = new SessionController();

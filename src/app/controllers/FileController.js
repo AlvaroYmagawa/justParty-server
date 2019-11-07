@@ -1,6 +1,6 @@
 /* eslint-disable class-methods-use-this */
-import User from '../models/User';
-import File from '../models/File';
+const User = require('../models/User');
+const File = require('../models/File');
 
 class FileController {
   async store(req, res) {
@@ -15,4 +15,4 @@ class FileController {
   }
 }
 
-export default new FileController();
+module.exports = new FileController();

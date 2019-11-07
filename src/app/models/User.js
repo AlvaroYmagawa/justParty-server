@@ -1,8 +1,8 @@
 /* eslint-disable no-param-reassign */
-import Sequelize, { Model } from 'sequelize';
-import bcrypt from 'bcryptjs';
+const Sequelize =  require('sequelize');
+const bcrypt = require('bcryptjs');
 
-class User extends Model {
+class User extends Sequelize.Model {
   static init(sequelize) {
     super.init(
       {
@@ -38,4 +38,4 @@ class User extends Model {
   }
 }
 
-export default User;
+module.exports = User;

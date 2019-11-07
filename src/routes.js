@@ -1,18 +1,18 @@
-import { Router } from 'express';
-import Cors from 'cors';
+const express  = require('express');
+const Cors =  require('cors');
 
-import multer from 'multer';
-import multerConfig from './config/multer';
-import auth from './app/middlewares/auth';
+const multer = require('multer');
+const multerConfig = require('./config/multer');
+const auth = require('./app/middlewares/auth');
 
-import UserController from './app/controllers/UserController';
-import SesstionController from './app/controllers/SessionController';
-import FileController from './app/controllers/FileController';
-import EventController from './app/controllers/EventController';
-import WishListController from './app/controllers/WishListController';
-import EvaluationController from './app/controllers/EvaluationController';
+const UserController =  require('./app/controllers/UserController');
+const SesstionController =  require('./app/controllers/SessionController');
+const FileController =  require('./app/controllers/FileController');
+const EventController =  require('./app/controllers/EventController');
+const WishListController = require('./app/controllers/WishListController');
+const EvaluationController = require('./app/controllers/EvaluationController');
 
-const routes = Router();
+const routes = express.Router();
 const cors = Cors();
 
 const upload = multer(multerConfig);
@@ -60,4 +60,4 @@ routes.get('/evaluations/:promoterId', EvaluationController.index);
 routes.put('/evaluations/:promoterId', EvaluationController.update);
 routes.delete('/evaluations/:evaluationId', EvaluationController.delete);
 
-export default routes;
+module.exports = routes;

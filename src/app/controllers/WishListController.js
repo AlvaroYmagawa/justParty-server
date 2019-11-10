@@ -1,6 +1,6 @@
 /* eslint-disable class-methods-use-this */
-const { Op } =  require('sequelize');
-const Event =  require('../models/Event');
+const { Op } = require('sequelize');
+const Event = require('../models/Event');
 const Wishlist = require('../models/WishList');
 const File = require('../models/File');
 const User = require('../models/User');
@@ -60,14 +60,36 @@ class WishlistController {
     return res.json(wishlists);
   }
 
-  async delete(req, res) {
-    const wishlist = await Wishlist.findByPk(req.params.wishlistId);
+  async show(req, res) {
+    const wishlist = await Wishlist.findOne({
+      where: {
+        event_id: req.params.eventId,
+        user_id: req.userId,
+      }
+    });
 
-    wishlist.canceled_at = new Date();
-
-    await wishlist.save();
+    if (!wishlist) {
+      return res.status(400).json({ error: 'Wish does not exists' });
+    }
 
     return res.json(wishlist);
+  }
+
+  async delete(req, res) {
+    const wishlist = await Wishlist.findOne({
+      where: {
+        event_id: req.params.eventId,
+        user_id: req.userId,
+      }
+    });
+
+    if (!wishlist) {
+      return res.status(400).json({ error: 'Wish does not exists for this user' });
+    }
+
+    wishlist.destroy();
+
+    return res.json({ msg: "Wish deleted" });
   }
 }
 

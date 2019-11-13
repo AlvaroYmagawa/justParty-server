@@ -1,8 +1,8 @@
 /* eslint-disable class-methods-use-this */
-const { isBefore, parseISO } =  require('date-fns');
+const { isBefore, parseISO } = require('date-fns');
 const Event = require('../models/Event');
-const User  = require('../models/User');
-const File  = require('../models/File');
+const User = require('../models/User');
+const File = require('../models/File');
 
 class EventController {
   async store(req, res) {
@@ -72,9 +72,49 @@ class EventController {
     return res.json(event);
   }
 
+  async indexAll(req, res) {
+    const events = await Event.findAll({
+      where: {
+        canceled_at: null,
+      },
+      order: ['date'],
+      attributes: [
+        'id',
+        'name',
+        'description',
+        'localization',
+        'date',
+        'sales_date',
+        'past',
+        'cancelable',
+        'canceled_at',
+      ],
+      include: [
+        {
+          model: User,
+          as: 'promoter',
+          attributes: ['id', 'name'],
+          include: [
+            {
+              model: File,
+              attributes: ['id', 'path', 'url'],
+            },
+          ],
+        },
+        {
+          model: File,
+          as: 'banner',
+          attributes: ['id', 'path', 'url'],
+        },
+      ],
+    });
+    return res.json(events);
+  }
+
   async index(req, res) {
     const events = await Event.findAll({
       where: {
+        promoter_id: req.params.promoterId,
         canceled_at: null,
       },
       order: ['date'],

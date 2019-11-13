@@ -1,14 +1,14 @@
-const express  = require('express');
-const Cors =  require('cors');
+const express = require('express');
+const Cors = require('cors');
 
 const multer = require('multer');
 const multerConfig = require('./config/multer');
 const auth = require('./app/middlewares/auth');
 
-const UserController =  require('./app/controllers/UserController');
-const SesstionController =  require('./app/controllers/SessionController');
-const FileController =  require('./app/controllers/FileController');
-const EventController =  require('./app/controllers/EventController');
+const UserController = require('./app/controllers/UserController');
+const SesstionController = require('./app/controllers/SessionController');
+const FileController = require('./app/controllers/FileController');
+const EventController = require('./app/controllers/EventController');
 const WishListController = require('./app/controllers/WishListController');
 const EvaluationController = require('./app/controllers/EvaluationController');
 
@@ -44,7 +44,8 @@ routes.post('/files', upload.single('file'), FileController.store);
 
 // Events
 routes.post('/events', EventController.store);
-routes.get('/events', EventController.index);
+routes.get('/:promoterId/events', EventController.index);
+routes.get('/events', EventController.indexAll);
 routes.get('/events/:eventId', EventController.show);
 routes.put('/events/:eventId', EventController.update);
 routes.delete('/events/:eventId', EventController.delete);
@@ -52,7 +53,8 @@ routes.delete('/events/:eventId', EventController.delete);
 // Wishlist
 routes.post('/wishlists', WishListController.store);
 routes.get('/wishlists', WishListController.index);
-routes.delete('/wishlists/:wishlistId', WishListController.delete);
+routes.delete('/wishlists/:eventId', WishListController.delete);
+routes.get('/wishlists/:eventId', WishListController.show);
 
 // Evaluation
 routes.post('/evaluations/:promoterId', EvaluationController.store);

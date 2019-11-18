@@ -1,4 +1,16 @@
 node_modules
 tmp/uploads/
-tmp/uploads/*
+tmp
 .env
+.DS_Store
+.idea/.gitignore
+.idea/JustParty-Backend.iml
+.idea/codeStyles/
+.idea/dataSources.xml
+.idea/dbnavigator.xml
+.idea/inspectionProfiles/
+.idea/jsLibraryMappings.xml
+.idea/misc.xml
+.idea/modules.xml
+.idea/vcs.xml
+.idea/codestream.xml

@@ -11,6 +11,7 @@ const FileController = require('./app/controllers/FileController');
 const EventController = require('./app/controllers/EventController');
 const WishListController = require('./app/controllers/WishListController');
 const EvaluationController = require('./app/controllers/EvaluationController');
+const FilterController = require('./app/controllers/FilterController');
 
 const routes = express.Router();
 const cors = Cors();
@@ -18,7 +19,7 @@ const cors = Cors();
 const upload = multer(multerConfig);
 
 // Middleware to enable the same origin access the server
-routes.use(function (req, res, next) {
+routes.use(function(req, res, next) {
   res.header('Access-Control-Allow-Origin', '*');
   res.header(
     'Access-Control-Allow-Headers',
@@ -49,6 +50,9 @@ routes.get('/events', EventController.indexAll);
 routes.get('/events/:eventId', EventController.show);
 routes.put('/events/:eventId', EventController.update);
 routes.delete('/events/:eventId', EventController.delete);
+
+// Filter Events
+routes.get('/filter/developers/:search', FilterController.filterPromoterEvents);
 
 // Wishlist
 routes.post('/wishlists', WishListController.store);

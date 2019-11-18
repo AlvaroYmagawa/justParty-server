@@ -23,6 +23,10 @@ module.exports = {
         type: Sequelize.DATE,
         allowNull: false,
       },
+      price: {
+        type: Sequelize.DATE,
+        allowNull: false
+      },
       sales_date: {
         type: Sequelize.DATE,
         allowNull: false,

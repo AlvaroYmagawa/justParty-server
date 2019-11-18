@@ -1,9 +1,0 @@
-APP_URL=http://localhost:3333
-APP_SECRET=
-
-# Postgres
-
-DB_HOST=address
-DB_USER=user
-DB_PASS=password
-DB_NAME=name

@@ -13,4 +13,12 @@
 # [START app_yaml]
 env: flex
 runtime: nodejs
+api_version: beta
+service: default
+env_variables:
+  APP_SECRET: 'leleogay'
+  DB_HOST: 'postgres'
+  DB_USER: 'postgres'
+  DB_PASS: 'postgres'
+  DB_NAME: 'postgres'
 # [END app_yaml]

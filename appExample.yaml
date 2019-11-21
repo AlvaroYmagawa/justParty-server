@@ -16,9 +16,9 @@ runtime: nodejs
 api_version: beta
 service: default
 env_variables:
-  APP_SECRET: 'leleogay'
-  DB_HOST: 'postgres'
-  DB_USER: 'postgres'
-  DB_PASS: 'postgres'
-  DB_NAME: 'postgres'
+  APP_SECRET: ''
+  DB_HOST: ''
+  DB_USER: ''
+  DB_PASS: ''
+  DB_NAME: ''
 # [END app_yaml]

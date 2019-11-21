@@ -22,6 +22,7 @@ class WishlistController {
         event_id,
         user_id: req.userId,
       },
+
     });
 
     if (eventInList) {
@@ -46,6 +47,7 @@ class WishlistController {
         {
           model: Event,
           attributes: ['id', 'name', 'date', 'sales_date'],
+          order: 'date',
           include: [
             {
               model: File,

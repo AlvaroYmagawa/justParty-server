@@ -12,7 +12,6 @@ class Event extends Sequelize.Model {
         date: Sequelize.DATE,
         sales_date: Sequelize.DATE,
         canceled_at: Sequelize.DATE,
-        price: Sequelize.STRING,
         past: {
           type: Sequelize.VIRTUAL,
           get() {

@@ -1,6 +1,7 @@
 /* eslint-disable no-param-reassign */
 const Sequelize = require('sequelize');
 const { isBefore, subHours } = require('date-fns');
+const Wishlist = require('../models/WishList');
 
 class Event extends Sequelize.Model {
   static init(sequelize) {

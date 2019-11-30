@@ -12,6 +12,8 @@ const EventController = require('./app/controllers/EventController');
 const WishListController = require('./app/controllers/WishListController');
 const EvaluationController = require('./app/controllers/EvaluationController');
 const FilterController = require('./app/controllers/FilterController');
+const CategoryController = require('./app/controllers/CategoryController');
+const DefaultCategoryController = require('./app/controllers/DefaultCategoryController');
 
 const routes = express.Router();
 const cors = Cors();
@@ -19,7 +21,7 @@ const cors = Cors();
 const upload = multer(multerConfig);
 
 // Middleware to enable the same origin access the server
-routes.use(function(req, res, next) {
+routes.use(function (req, res, next) {
   res.header('Access-Control-Allow-Origin', '*');
   res.header(
     'Access-Control-Allow-Headers',
@@ -53,6 +55,8 @@ routes.delete('/events/:eventId', EventController.delete);
 
 // Filter Events
 routes.get('/filter/developers/:search', FilterController.filterPromoterEvents);
+routes.get('/filter/events/:search', FilterController.FilterEvents);
+routes.get('/filter/categories/:search', FilterController.filterByCategory);
 
 // Wishlist
 routes.post('/wishlists', WishListController.store);
@@ -65,5 +69,16 @@ routes.post('/evaluations/:promoterId', EvaluationController.store);
 routes.get('/evaluations/:promoterId', EvaluationController.index);
 routes.put('/evaluations/:promoterId', EvaluationController.update);
 routes.delete('/evaluations/:evaluationId', EvaluationController.delete);
+
+// Category
+routes.post('/categories', CategoryController.store);
+routes.get('/categories/:eventId', CategoryController.index);
+
+// Default Category
+routes.post('/defaultCategories', DefaultCategoryController.store);
+routes.get('/defaultCategories/:defaultCategoryId', DefaultCategoryController.index);
+routes.get('/defaultCategories', DefaultCategoryController.indexAll);
+
+
 
 module.exports = routes;

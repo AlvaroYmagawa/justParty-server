@@ -1,5 +1,5 @@
 const Evaluation = require('../models/Evaluation');
-const User =  require('../models/User');
+const User = require('../models/User');
 const File = require('../models/File');
 
 class EvaluationController {
@@ -26,11 +26,11 @@ class EvaluationController {
       }
     })
 
-    if (madeEvaluation) {
-      return res.status(401).json({
-        error: 'You already done your evaluation for this promoter',
-      });
-    }
+    // if (madeEvaluation) {
+    //   return res.status(401).json({
+    //     error: 'You already done your evaluation for this promoter',
+    //   });
+    // }
 
     const evaluation = await Evaluation.create({
       comment,

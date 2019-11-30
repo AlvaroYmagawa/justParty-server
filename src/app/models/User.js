@@ -1,5 +1,5 @@
 /* eslint-disable no-param-reassign */
-const Sequelize =  require('sequelize');
+const Sequelize = require('sequelize');
 const bcrypt = require('bcryptjs');
 
 class User extends Sequelize.Model {
@@ -14,8 +14,6 @@ class User extends Sequelize.Model {
         adress: Sequelize.STRING,
         contact: Sequelize.STRING,
         description: Sequelize.STRING,
-        likes: Sequelize.INTEGER,
-        dislikes: Sequelize.INTEGER,
       },
       {
         sequelize,

@@ -1,13 +1,15 @@
-const Sequelize =  require('sequelize');
+const Sequelize = require('sequelize');
 const dataBaseConfig = require('../config/database');
 
 const User = require('../app/models/User');
 const File = require('../app/models/File');
-const Event =  require('../app/models/Event');
-const WishList =  require('../app/models/WishList');
-const Evaluations = require('../app/models/Evaluation');
+const Event = require('../app/models/Event');
+const WishList = require('../app/models/WishList');
+const Evaluation = require('../app/models/Evaluation');
+const Category = require('../app/models/Category');
+const DefaultCategory = require('../app/models/DefaultCategory');
 
-const models = [User, File, Event, WishList, Evaluations];
+const models = [User, File, Event, WishList, Evaluation, Category, DefaultCategory];
 
 class Database {
   constructor() {
@@ -23,4 +25,4 @@ class Database {
   }
 }
 
-module.exports =  new Database();
+module.exports = new Database();

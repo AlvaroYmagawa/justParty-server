@@ -4,6 +4,7 @@ const { Op } = require('sequelize');
 const Event = require('../models/Event');
 const User = require('../models/User');
 const File = require('../models/File');
+const Category = require('../models/Category');
 
 class FilterController {
   async filterPromoterEvents(req, res) {
@@ -52,7 +53,7 @@ class FilterController {
     return res.json(events);
   }
 
-  async filterEvents(req, res) {
+  async FilterEvents(req, res) {
     const { search } = req.params;
 
     const events = await Event.findAll({
@@ -94,9 +95,52 @@ class FilterController {
       ],
     });
 
-    if (!events) {
-      return res.status(400);
-    }
+    return res.json(events);
+  }
+
+  async filterByCategory(req, res) {
+    const { search } = req.params;
+
+    const events = await Category.findAll({
+      where: {
+        default_category_id: search,
+      },
+      include: [
+        {
+          model: Event,
+          order: ['date'],
+          attributes: [
+            'id',
+            'name',
+            'description',
+            'localization',
+            'date',
+            'sales_date',
+            'past',
+            'cancelable',
+            'canceled_at',
+          ],
+          include: [
+            {
+              model: User,
+              as: 'promoter',
+              attributes: ['id', 'name'],
+              include: [
+                {
+                  model: File,
+                  attributes: ['id', 'path', 'url'],
+                },
+              ],
+            },
+            {
+              model: File,
+              as: 'banner',
+              attributes: ['id', 'path', 'url'],
+            },
+          ],
+        }
+      ]
+    })
 
     return res.json(events);
   }

@@ -16,9 +16,10 @@ runtime: nodejs
 api_version: beta
 service: default
 env_variables:
+  APP_URL: 'https://justparty-24109.appspot.com'
   APP_SECRET: 'leleogay'
-  DB_HOST: 'postgres'
-  DB_USER: 'postgres'
-  DB_PASS: 'postgres'
-  DB_NAME: 'postgres'
+  DB_HOST: '35.224.242.189'
+  DB_USER: 'justpartyuser'
+  DB_PASS: 'justparty-24109'
+  DB_NAME: 'justParty'
 # [END app_yaml]

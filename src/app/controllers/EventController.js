@@ -6,7 +6,7 @@ const File = require('../models/File');
 
 class EventController {
   async store(req, res) {
-    const { name, description, localization, banner_id } = req.body;
+    const { name, description, localization, banner_id, price } = req.body;
 
     // Is Promoter validation
     const isPromoter = await User.findOne({
@@ -40,6 +40,7 @@ class EventController {
       description,
       localization,
       date,
+      price,
       sales_date,
       promoter_id: req.userId,
       banner_id,
@@ -81,6 +82,8 @@ class EventController {
       order: ['date'],
       attributes: [
         'id',
+        'price',
+        'selling',
         'name',
         'description',
         'localization',
@@ -122,11 +125,13 @@ class EventController {
       attributes: [
         'id',
         'name',
+        'price',
         'description',
         'localization',
         'date',
         'sales_date',
         'past',
+        'selling',
         'cancelable',
         'canceled_at',
       ],

@@ -8,6 +8,7 @@ class Event extends Sequelize.Model {
     super.init(
       {
         name: Sequelize.STRING,
+        price: Sequelize.FLOAT,
         description: Sequelize.STRING,
         localization: Sequelize.STRING,
         date: Sequelize.DATE,
@@ -25,6 +26,12 @@ class Event extends Sequelize.Model {
             return isBefore(new Date(), subHours(this.date, 24));
           },
         },
+        selling: {
+          type: Sequelize.VIRTUAL,
+          get() {
+            return isBefore(this.sales_date, new Date());
+          }
+        }
       },
       {
         sequelize,
